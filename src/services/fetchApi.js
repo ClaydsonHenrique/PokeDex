@@ -1,8 +1,6 @@
 const url = 'https://pokeapi.co/api/v2/'
 
-const getPokemons = async () => {
-  const limite = 20
-  const offset = 0
+const getPokemons = async (limite, offset) => {
 
   const response = await fetch(`${url}pokemon?limit=${limite}&offset=${offset}`)
   const data = await response.json();
