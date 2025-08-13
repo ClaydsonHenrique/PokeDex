@@ -27,7 +27,7 @@ export default function Cards({ pokemon }) {
     getPokemonDetail()
   }, [])
 
-
+ 
   console.log(dataPokemon)
   return (
     <section
@@ -54,21 +54,21 @@ export default function Cards({ pokemon }) {
           <img src={imgPokemon} alt={pokemon.name} />
         </div>
 
-        <div className='p-4 flex flex-wrap gap-1 justify-center'>
+        <div className='p-4 flex gap-1 justify-around'>
           {typePokemon.length > 0 &&
             typePokemon.map((type) => (
               <div
-              className=' flex items-center gap-5 px-2 py-1 rounded-xl '
+                className='h-10 gap-1 flex items-center justify-around  px-2 py-1 rounded-xl '
                 style={{ backgroundColor: typeColors[type] }}
-              >
-                <p className='px-2 py-1 rounded-full text-xs font-medium text-white' style={{
-                  backgroundColor: typeColors[type]
-                }}>
-                  {type}</p>
+                >
                 <img
                   className='size-4'
                   style={{ backgroundColor: typeColors[type] }}
                   src={typeIcons[type]} alt="" />
+                <p className='rounded-full text-sm font-medium text-white' style={{
+                  backgroundColor: typeColors[type]
+                }}>
+                  {type}</p>
               </div>
             ))}
         </div>

@@ -5,6 +5,7 @@ import Cards from './components/Cards'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import FilterPoke from './components/FilterPoke'
+import Loagind from './components/Loagind'
 
 function App() {
   const [pokemons, setPokemons] = useState([])
@@ -14,6 +15,7 @@ function App() {
   const [pokemonSelected, setPokemonSeletected] = useState(0)
   const [selected, setSelected] = useState(false)
   const [filter, setFilter] = useState([])
+  const [loadingCard, setLoadingCard] = useState(false)
 
   const fetchPokemons = async () => {
     const allPokemons = await getPokemons(limite, offset)
@@ -42,40 +44,49 @@ function App() {
     setSelected(false)
     document.body.style.overflow = '';
   }
-  
+
   useEffect(() => {
     fetchPokemons()
   }, [limite, filter])
-
+  
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50 px-20 ">
       <Header />
-      <FilterPoke filter={filter} setFilter={setFilter} />
-      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 '>
-        {
-          filter.length > 0 &&
-          filter.map((card,index) => (
-            <button onClick={() => selectedPokemon(index)}>
-            <Cards pokemon={card.pokemon} />
-            </button>
-          ))
-        }
+      <FilterPoke filter={filter} setFilter={setFilter} setLoadingCard={setLoadingCard} />
+      {
+        loadingCard ? <Loagind /> 
+        : 
+          <div 
+          className='flex flex-col items-center gap-8'
+          >
+          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 '>
+            {
+              filter.length > 0 &&
+              filter.map((card, index) => (
+                <button onClick={() => selectedPokemon(index)}>
+                  <Cards pokemon={card.pokemon} />
+                </button>
+              ))
+            }
 
 
-        {pokemons.length > 0 && filter.length === 0 &&
-          pokemons.map((pokemon, index) => (
-            <button onClick={() => selectedPokemon(index)}>
-              <Cards pokemon={pokemon} />
-            </button>
-          ))
-        }
-      </div>
+            {pokemons.length > 0 && filter.length === 0 &&
+              pokemons.map((pokemon, index) => (
+                <button onClick={() => selectedPokemon(index)}>
+                  <Cards pokemon={pokemon} />
+                </button>
+              ))
+            }
+          </div>
+            <button
+              className="w-50  mt-5 px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              onClick={handleClick}
+            >{loading ? '...carregando' : 'adicionar mais'}</button>
+         </div>
+      }
 
-      <button
-        className="w-50  mt-5 px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-        onClick={handleClick}
-      >{loading ? '...carregando' : 'adicionar mais'}</button>
+     
 
       <Footer />
       {selected &&
@@ -84,13 +95,11 @@ function App() {
           {pokemons.length > 0 &&
             <div className='flex flex-col gap-4'>
               <button className='w-20  p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors'
-                onClick={onclose }
+                onClick={onclose}
               >fechar </button>
               <Cards pokemon={pokemons[pokemonSelected]} />
             </div>}
         </div>}
-
-
 
     </section>
   )

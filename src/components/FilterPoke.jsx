@@ -2,7 +2,7 @@ import React from 'react'
 import { getPokemonsForType, getTypePokemons } from '../services/fetchApi'
 import { typeColors, typeColorsOpacity } from '../services/typesColors'
 
-export default function FilterPoke({  setFilter }) {
+export default function FilterPoke({ setFilter, setLoadingCard }) {
 
   const [types, settypes] = React.useState([])
   const [typefilter, setTypeFilters] = React.useState([])
@@ -24,20 +24,24 @@ export default function FilterPoke({  setFilter }) {
       let b = await getTypePokemons();
       settypes(b)
     };
-
     fetchData();
   }, []);
 
   const handleChange = ({ target }) => {
+    setLoadingCard(true)
     if (typefilter.includes(target.value)) {
       const removeType = typefilter.filter(item => item !== target.value)
       setTypeFilters(removeType)
     } else {
       setTypeFilters((prev) => [
-        ...prev,
-        target.value
+        target.value,
+        ...prev
       ])
     }
+    
+    setTimeout(() => {
+      setLoadingCard(false)
+    },2000)
   }
 
   console.log(typefilter)
