@@ -17,5 +17,26 @@ const getPokemonId = async (id) => {
 }
 
 
+const getTypePokemons = async () => {
+  const response = await fetch(`${url}type`);
+  const data = await response.json();
+  const filters = data.results
+  return filters;
+}
 
-export  { getPokemons, getPokemonId }
+const getPokemonsForType = async (type) => {
+  const pokemon = []
+  type.map(async (t) => {
+    const response = await fetch(`${url}type/${t}`)
+    const data = await response.json();
+    pokemon.push(...data.pokemon)
+  })
+  return pokemon
+}
+
+
+
+
+
+
+export { getPokemons, getPokemonId, getTypePokemons, getPokemonsForType }

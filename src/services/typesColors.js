@@ -1,0 +1,43 @@
+export const typeColors = {
+  normal: 'rgba(168, 168, 120)',
+  fighting: 'rgba(192, 48, 40)',
+  flying: 'rgba(168, 144, 240)',
+  poison: 'rgba(160, 64, 160)',
+  ground: 'rgba(224, 192, 104)',
+  rock: 'rgba(184, 160, 56)',
+  bug: 'rgba(168, 184, 32)',
+  ghost: 'rgba(112, 88, 152)',
+  steel: 'rgba(184, 184, 208)',
+  fire: 'rgba(240, 128, 48)',
+  water: 'rgba(104, 144, 240)',
+  grass: 'rgba(120, 200, 80)',
+  electric: 'rgba(248, 208, 48)',
+  psychic: 'rgba(248, 88, 136)',
+  ice: 'rgba(152, 216, 216)',
+  dragon: 'rgba(112, 56, 248)',
+  dark: 'rgba(112, 88, 72)',
+  fairy: 'rgba(238, 153, 172)',
+};
+
+export const typeColorsOpacity = {
+  normal: 'rgba(168, 168, 120,0.4)',
+  fighting: 'rgba(192, 48, 40,0.4)',
+  flying: 'rgba(168, 144, 240,0.4)',
+  poison: 'rgba(160, 64, 160,0.4)',
+  ground: 'rgba(224, 192, 104,0.4)',
+  rock: 'rgba(184, 160, 56,0.4)',
+  bug: 'rgba(168, 184, 32,0.4)',
+  ghost: 'rgba(112, 88, 152,0.4)',
+  steel: 'rgba(184, 184, 208,0.4)',
+  fire: 'rgba(240, 128, 48,0.4)',
+  water: 'rgba(104, 144, 240,0.4)',
+  grass: 'rgba(120, 200, 80,0.4)',
+  electric: 'rgba(248, 208, 48,0.4)',
+  psychic: 'rgba(248, 88, 136,0.4)',
+  ice: 'rgba(152, 216, 216,0.4)',
+  dragon: 'rgba(112, 56, 248, 0.4)',
+  dark: 'rgba(112, 88, 72, 0.4)',
+  fairy: 'rgba(238, 153, 172, 0.4)',
+};
+
+
